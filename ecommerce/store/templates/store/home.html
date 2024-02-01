@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<header>
+  <div class="row row-homepage">
+    <div class="col col-image">
+      <img
+        src="{% static 'images/vege3.jpg' %}"
+        class="img-fluid home-image"
+        alt="..."
+      />
+    </div>
+    <div class="col col-text">
+      <h1 class="home-text">
+        Discover a bountiful selection of fresh, organic vegetables, fruits, and
+        vibrant plants at our website, cultivating nature's goodness delivered
+        straight to your door.
+      </h1>
+    </div>
+  </div>
+</header>
+
+<div class="row justify-content-center">
+  <h4 class="text-shop-now">What are you waiting for?</h4>
+  <a href="{% url 'store' %}" class="btn btn-success add-btn btn-lg home-btn">
+    <img id="home-cart-icon" src="{% static 'images/cart.png' %}" />Shop Now
+  </a>
+</div>
+{% endblock content %}

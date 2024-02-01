@@ -1,0 +1,104 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+<div class="row store-img">
+  <img
+    src="{% static 'images/vege4.jpg' %}"
+    class="img-fluid store-image"
+    alt="..."
+  />
+</div>
+<div class="row row-header">
+  <div class="col-4">
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-success btn-search" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="col col-category">
+    <a href="#" class="category-filter" data-category="All">All |</a>
+    <a href="#" class="category-filter" data-category="Fruits">Fruits |</a>
+    <a href="#" class="category-filter" data-category="Vegetables"
+      >Vegetables |</a
+    >
+    <a href="#" class="category-filter" data-category="Roots crops"
+      >Roots crops |</a
+    >
+    <a href="#" class="category-filter" data-category="Spices">Spices |</a>
+    <a href="#" class="category-filter" data-category="Grains">Grains </a>
+  </div>
+</div>
+<hr />
+<div class="row" id="productContainer">
+  {% for product in products %}
+  <div class="col-lg-4 product-item" data-category="{{ product.category }}">
+    <img class="thumbnail" src="{{ product.imageURL }}" />
+    <div class="box-element product">
+      <h6><strong>{{ product.name }}</strong></h6>
+      <hr />
+      <button
+        data-product="{{ product.id }}"
+        data-action="add"
+        class="btn btn-success add-btn update-cart"
+      >
+        Add to Cart
+      </button>
+      <h4 style="display: inline-block; float: right">
+        <strong
+          >₱{{ product.price|floatformat:2 }}
+          <span>/{{product.scale}}</span></strong
+        >
+      </h4>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get all category filter links
+    var categoryFilterLinks = document.querySelectorAll(".category-filter");
+
+    // Add click event listener to each category filter link
+    categoryFilterLinks.forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        // Get the category value from the data-category attribute
+        var category = this.dataset.category;
+
+        // Show all products if "All" is selected
+        if (category === "All") {
+          showAllProducts();
+        } else {
+          // Hide all product items
+          var productItems = document.querySelectorAll(".product-item");
+          productItems.forEach(function (item) {
+            item.style.display = "none";
+          });
+
+          // Show only the product items with the selected category
+          var filteredItems = document.querySelectorAll(
+            '.product-item[data-category="' + category + '"]'
+          );
+          filteredItems.forEach(function (item) {
+            item.style.display = "block";
+          });
+        }
+      });
+    });
+
+    // Function to show all products
+    function showAllProducts() {
+      var productItems = document.querySelectorAll(".product-item");
+      productItems.forEach(function (item) {
+        item.style.display = "block";
+      });
+    }
+  });
+</script>
+
+{% endblock content %}
