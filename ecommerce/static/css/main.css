@@ -174,3 +174,30 @@ a:hover{
     margin-right: 10px;
     margin-bottom: 3px;
 }
+
+#home-title{
+    color: #a2f7a2;
+    font-weight: bold;
+}
+
+.btn-cod{
+    background-color: #dd8f08 !important;
+    color: #fff !important;
+    margin-top: 10px;
+    border-radius: 20px !important;
+    
+}
+.btn-gcash{
+    margin-top: 10px;
+    background-color: #0075ff !important;
+    color: #fff !important;
+    margin-bottom: 10px;
+    border-radius: 20px !important;
+}
+#gcash-icon{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    color: #fff;
+}

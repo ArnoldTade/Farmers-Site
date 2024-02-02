@@ -1,4 +1,6 @@
 {% extends 'store/main.html' %} {% load static %} {% block content %}
+<script src="{% static 'js/index.global.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <div class="row">
   <div class="col-lg-6">
     <div class="box-element" id="form-wrapper">
@@ -111,11 +113,105 @@
     <br />
     <div class="box-element hidden" id="payment-info">
       <small>Paypal Options</small>
+      <!--COD MODAL-->
+      <button
+        type="button"
+        class="btn btn-block btn-cod"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Cash on Delivery
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Cash on Delivery
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">Your Order has been Placed.</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-success"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--END COD MODAL-->
+      <button
+        type="button"
+        class="btn btn-block btn-gcash"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        Pay with
+        <img id="gcash-icon" src="{% static 'images/gcash.png' %}" /> GCash
+      </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                Enter GCash Credentials
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="paypal-button-container"></div>
       <!-- <button id="make-payment">Make Payment</button> -->
     </div>
   </div>
 
+  <!--DO NOT TOUCH-->
   <div class="col-lg-6">
     <div class="box-element">
       <a class="btn btn-outline-dark" href="{% url 'cart' %}"
@@ -124,6 +220,7 @@
       <hr />
       <h3>Order Summary</h3>
       <hr />
+
       {% for item in items %}
       <div class="cart-row">
         <div style="flex: 2">
