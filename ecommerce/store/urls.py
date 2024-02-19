@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     # leave as empty string for base url
-    path("", views.home, name="home"),
+    path("farmlinkonsite.com", views.home, name="home"),
     path("store/", views.store, name="store"),
     path("cart/", views.cart, name="cart"),
     path("checkout/", views.checkout, name="checkout"),

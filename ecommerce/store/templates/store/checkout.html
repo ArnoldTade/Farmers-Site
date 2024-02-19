@@ -1,6 +1,9 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
+<script src="{% static 'js/index.global.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
     <div class="row">
         <div class="col-lg-6">
             <div class="box-element" id="form-wrapper">
@@ -11,7 +14,7 @@
                             <input required class="form-control" type="text" name="name" placeholder="Name...">
                         </div>
                         <div class="form-field">
-                            <input required class="form-control" type="email" name="email" placeholder="Email...">
+                            <input required class="form-control" type="text" name="email" placeholder="Contact number">
                         </div>
                     </div>
 
@@ -20,36 +23,210 @@
                         <p>Shipping Information: </p>
                         <hr>
                         <div class="form-field">
-                                <input class="form-control" type="text" name="address" placeholder="Address...">
+                            <select class="form-select" id="address-brgy" name="address" aria-label="Default select example" >
+                                <option selected>Select address</option>
+                                <option value="1">Ali-is</option>
+                                <option value="2">Banaybanay</option>
+                                <option value="3">Banga</option>
+                                <option value="4">Boyco</option>
+                                <option value="5">Bugay</option>
+                                <option value="6">Cansumalig</option>
+                                <option value="7">Dawis</option>
+                                <option value="8">Kalamtukan</option>
+                                <option value="9">Kalumboyan</option>
+                                <option value="10">Malabugas</option>
+                                <option value="11">Mandu-ao</option>
+                                <option value="12">Maninihon</option>
+                                <option value="13">Minaba</option>
+                                <option value="14">Nangka</option>
+                                <option value="15">Narra</option>
+                                <option value="16">Pagatban</option>
+                                <option value="17">Poblacion</option>
+                                <option value="18">San Isidro</option>
+                                <option value="19">San Jose</option>
+                                <option value="20">San Miguel</option>
+                                <option value="21">San Roque</option>
+                                <option value="22">Suba (Pob.)</option>
+                                <option value="23">Tabuan</option>
+                                <option value="24">Tayawan</option>
+                                <option value="25">Tinago (Pob.)</option>
+                                <option value="26">Ubos (Pob.)</option>
+                                <option value="27">Villareal</option>
+                                <option value="28">Villasol (Bato)</option>
+                            </select>
                         </div>
+                        <div class="form-field">
+                          <select class="form-select" id="address-city" name="city" aria-label="Default select example" >
+                            <option selected>Select City</option>
+                            <option value="1">Bayawan</option>
+                          </select>
+                        </div>
+                      <!--  <div class="form-field">
+                            <input class="form-control" type="text" name="address" placeholder="Address...">
+                        </div>
+                        
                         <div class="form-field">
                             <input class="form-control" type="text" name="city" placeholder="City...">
                         </div>
+-->
                         <div class="form-field">
-                            <input class="form-control" type="text" name="state" placeholder="State...">
+                            <input class="form-control" type="hidden" name="state" value="negros" placeholder="State...">
                         </div>
                         <div class="form-field">
-                            <input class="form-control" type="text" name="zipcode" placeholder="Zip code...">
+                            <input class="form-control" type="hidden" name="zipcode" value="6221" placeholder="Zip code...">
                         </div>
                         <div class="form-field">
-                            <input class="form-control" type="text" name="country" placeholder="Country...">
+                            <input class="form-control" type="hidden" name="country" value="philippines" placeholder="Country...">
                         </div>
                     </div>
-
+                    <!--Delivery option-->
+                    <div class="col">
+                        <p>How would you like receive the order?</p>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="selectDeliver" checked/>
+                            <label class="form-check-label" for="selectDeliver"> Deliver to current Address </label>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="selectPickup" />
+                            <label class="form-check-label" for="selectPickup"> Pick up from delivery hub </label> 
+                          </div>
+                        </div>
+                    </div>
                     <hr>
+                    <div class="col" id="shippingPricing">
+                        <p >Shipping Pricing</p>
+                        <table>
+                            <tr>
+                              <th >Price </th>
+                              <td > ₱48 (first 5km)</td>
+                             
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>+₱7/km (6-15km) </td>
+                            </tr>
+                            <tr>
+                              <td class="td-border"></td>
+                              <td class="td-border">+ ₱5/km (>15 km)</td>
+                              
+                            </tr>
+                            <tr>
+                                <th class="td-border">Add Stop: </th>
+                                <td class="td-border"> ₱30 per stop</td>
+                            </tr>
+                            <tr>
+                                
+                                <th class="td-border">Weight Limit: </th>
+                                <td class="td-border"> Up to 20 kg</td>
+                            </tr>
+                            <tr>
+                                <th class="td-border">Size Limit (L x W x H): </th>
+                                <td class="td-border"> 1.6 × 1.25 × 1.6 ft</td>
+                            </tr>
+                            <tr>
+                                <th class="td-border">Suitable for: </th>
+                                <td class="td-border">Cheapest delivery option; perfect for small items such as food</td>
+                            </tr>
+                            <tr>
+                                <th class="td-border">Remarks:</th>
+                                <td class="td-border">The fare of service is based on multiple factors such as traffic situation, order volume, availability of delivery partners, applicable tolls, surcharges and so on. Hence the total fare of the service may vary. The fare displayed at the time of request may not be the same if there is a change to order details.</td>
+                            </tr>
+                          </table>
+                    </div>
+                    <!--End Delivery option-->
+                    <hr>
+
+                   <!-- <select class="form-select" id="shipping-select" aria-label="Default select example" >
+                        <option selected>Select shipping destination</option>
+                        <option value="1">Malabugas</option>
+                        <option value="2">Omod</option>
+                        <option value="3">Narra</option>
+                      </select>
+                    <hr>
+                    -->
                     <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
                 </form>
 
             </div>
-
+           
+      
         <br>
         <div class="box-element hidden" id="payment-info">
-            <small>Paypal Options</small>
-            <div id="paypal-button-container"></div>
-           <!-- <button id="make-payment">Make Payment</button> -->
-        </div>
+            <small>Payment Options</small>
+             <!-- COD -->
+            <button type="button" class="btn btn-block btn-cod" data-bs-toggle="modal" data-bs-target="#exampleModal"> Cash on Delivery </button>
 
-        </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            Cash on Delivery
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Payment will be received upon delivery</div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" id="buttonCod" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            <!--Gcash Button-->
+            <button type="button" class="btn btn-block btn-gcash" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Pay with
+                <img id="gcash-icon" src="{% static 'images/gcash.png' %}" /> GCash
+            </button>
+                <!--Gcash Modal-->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                    Enter GCash Credentials
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-auto">
+                                        <label class="visually-hidden" for="autoSizingInputGroup">Contact number</label>
+                                        <div class="input-group">
+                                          <div class="input-group-text">+63</div>
+                                          <input type="number" class="form-control" id="autoSizingInputGroup" placeholder="Contact number" required>
+                                        </div>
+                                      </div>
+                                      <br>
+                                      <div class="col-md-6">
+                                        <label for="inputPassword4" class="form-label">Enter your 4 digit MPIN</label>
+                                        <input type="password" class="form-control" minlength="4" maxlength="4"   id="inputPassword4" required>
+                                      </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" id="buttonGcash" class="btn btn-primary">Pay now</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                    <!-- Paypal -->
+                    <div id="paypal-button-container"></div>
+                        
+                    <!-- <button id="make-payment">Make Payment</button> -->
+                    </div>
+
+                    </div>
 
 
 
@@ -68,44 +245,14 @@
                 </div>
                 {% endfor %}
                 <h5>Items: {{order.get_cart_items}}</h5>
-                <h5>Total: ₱{{order.get_cart_total|floatformat:2}}</h5>
+                <h5 id="total">Total: ₱{{order.get_cart_total|floatformat:2}}</h5>
             </div>
         </div>
 
     </div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AdZCLujlyuYzsjIDj8Qy9UdtchLhwa5PkCb6gVUL4uee3j5CbrbQLSTpg1-7nVdD64fJvIaINyl16BY-&currency=USD"></script>
- <script>
-     var total = '{{order.get_cart_total}}'
-        // Render the PayPal button into #paypal-button-container
-        paypal.Buttons({
-        style: {
-                color:  'blue',
-                shape:  'pill',
-                label:  'pay',
-                height: 40
-            },
-
-
-            createOrder: function(data, actions){
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: parseFloat(total).toFixed(2)
-                        }
-                    }]
-                });
-            },
-            //Finalize the transaction
-            onApprove: function(data, actions){
-                return actions.order.capture().then(function(details){
-                  submitFormData()
-                });
-            }
-
-        }).render('#paypal-button-container');
- </script>
-
+ 
 <script type="text/javascript">
       var shipping ='{{order.shipping}}'
 
@@ -191,5 +338,129 @@
               window.location.href = "{% url 'store' %}"
           })
       }
+
+      //COD Function
+      var btnCod = document.getElementById("buttonCod");
+      btnCod.addEventListener("click", function() {
+        console.log('Success:');
+        alert('Your Order has been Placed');
+
+        cart = {}
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        window.location.href = "{% url 'store' %}"
+       })
+
+
+       var btnGcash = document.getElementById("buttonGcash");
+       btnGcash.addEventListener("click", function() {
+        console.log('Success:');
+        alert('Transaction completed');
+
+        cart = {}
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        window.location.href = "{% url 'store' %}"
+       })
+
+
+
+
+       const totalElement = document.getElementById("total");
+       var shippingSelect = document.getElementById("address-brgy")
+
+       shippingCostMap = {
+        "1" : 145.15,
+        "2" : 167.20,
+        "3" : 48,
+        "4" : 48,
+        "5" : 195.25,
+        "6" : 99.1,
+        "7" : 174.2,
+        "8" : 163.45,
+        "9" : 124.55,
+        "10" : 48,
+        "11" : 216.25,
+        "12" : 52.83,
+        "13" : 77.82,
+        "14" : 63.61,
+        "15" : 93.57,
+        "16" : 62.07,
+        "17" : 48,
+        "18" : 76.21,
+        "19" : 220.85,
+        "20" : 88.39,
+        "21" : 52.13,
+        "22" : 48,
+        "23" : 116.39,
+        "24" : 132.75,
+        "25" : 48,
+        "26" : 48,
+        "27" : 48,
+        "28" : 191.05,
+       };
+
+       shippingSelect.addEventListener('change', function(){
+        const selectedOptionValue = this.value;
+        const shippingCost = shippingCostMap[selectedOptionValue];
+
+        if(shippingCost) {
+            const cartTotal = parseFloat('{{order.get_cart_total|floatformat:2}}');
+            const total = cartTotal + shippingCost;
+            totalElement.textContent = 'Total: ₱' + cartTotal.toFixed(2) + ' + ₱' + shippingCost + ' Shipping fee';
+        }else{
+            const cartTotal = parseFloat('{{order.get_cart_total|floatformat:2}}');
+            totalElement.textContent = 'Total: ₱' + cartTotal.toFixed(2);
+
+        }
+        var pickup = document.getElementById("selectPickup");
+        var deliver = document.getElementById("selectDeliver");
+        var shipping = document.getElementById("address-brgy");
+        var shippingPricing = document.getElementById("shippingPricing");
+      
+        
+        deliver.addEventListener('change', function(){
+            const cartTotal = parseFloat('{{order.get_cart_total|floatformat:2}}');
+            const total = cartTotal + shippingCost;
+            totalElement.textContent = 'Total: ₱' + cartTotal.toFixed(2) + ' + ₱' + shippingCost + ' Shipping fee';
+            shippingPricing.removeAttribute('hidden');
+
+        });
+        pickup.addEventListener('change', function(){
+                const cartTotal = parseFloat('{{order.get_cart_total|floatformat:2}}');
+                totalElement.textContent = 'Total: ₱' + cartTotal.toFixed(2);
+                shippingPricing.setAttribute('hidden', 'true');
+        })
+       })
+
 </script>
+<script>
+    var total = '{{order.get_cart_total}}'
+       // Render the PayPal button into #paypal-button-container
+       paypal.Buttons({
+       style: {
+               color:  'blue',
+               shape:  'pill',
+               label:  'pay',
+               height: 40
+           },
+
+
+           createOrder: function(data, actions){
+               return actions.order.create({
+                   purchase_units: [{
+                       amount: {
+                           value: parseFloat(total).toFixed(2)
+                       }
+                   }]
+               });
+           },
+           //Finalize the transaction
+           onApprove: function(data, actions){
+               return actions.order.capture().then(function(details){
+                 submitFormData()
+               });
+           }
+
+       }).render('#paypal-button-container');
+</script>
+
 {% endblock content %}
