@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-5+17lknyhp$=q_h-%4(e6#ye+j_fqgywlrd_=s8&_)4ig1u3d("
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -82,7 +85,15 @@ DATABASES = {
     }
 }
 
-
+"""
+DATABASES = {
+    "default": dj_database_url.parse(
+        os.environ.get(
+            "postgres://test_db_9vys_user:vYnZ0ggsjHTZAySmKSr5ST1ePlXkRpqF@dpg-codmlc0l6cac73bmr640-a:5432/test_db_9vys"
+        )
+    )
+}
+"""
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
