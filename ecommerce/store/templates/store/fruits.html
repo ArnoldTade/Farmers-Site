@@ -1,0 +1,47 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<div class="row">
+  <div class="col-4">
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-success btn-search" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="col col-category">
+    <a href="#">All |</a>
+    <a href="#" class="text-body-secondary">Fruits |</a>
+    <a href="#">Vegetables |</a>
+    <a href="#">Root Crops |</a>
+    <a href="#">Spices |</a>
+    <a href="#">Grains </a>
+  </div>
+</div>
+
+<div class="row">
+  {% for product in products %} {% if product.category == "Spices" %}
+  <div class="col-lg-4">
+    <img id="myImage" class="thumbnail" src="{{ product.imageURL }}" />
+    <div class="box-element product">
+      <h6><strong>{{ product.name }}</strong></h6>
+      <hr />
+      <button
+        data-product="{{ product.id }}"
+        data-action="add"
+        class="btn btn-success add-btn update-cart"
+      >
+        Add to Cart
+      </button>
+      <h4 style="display: inline-block; float: right">
+        <strong>₱{{ product.price|floatformat:2 }} <span>/kg</span></strong>
+      </h4>
+    </div>
+  </div>
+  {% endif %} {% endfor %}
+</div>
+
+{% endblock content %}
